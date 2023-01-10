@@ -1,29 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-a-Sketch</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="javascript.js" defer></script>
+  <title>untitled - etch a sketch</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <link rel="stylesheet" href="./style.css">
+  <script src="javascript.js" defer></script>
+  <link rel="icon" href="./images/favicon.png">
 </head>
 <body>
-    <div class="main">
-        <div id="etchasketch">
-        </div>
-        <div class="controls">
-            <button id="reset">Reset</button>
-            <button id="rainbow">Rainbow</button>
-            <button id="resolution">Size</button>
-        </div>
+<div class="main">
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">
+        untitled - etch a sketch
+      </div>
+      <div class="title-bar-controls">
+        <button aria-label="Help"></button>
+        <button aria-label="Close"></button>
+      </div>
     </div>
-    <div class="footer">
-        <p> Copyright ©
+    <div class="window-body">
+        <div class="content">
+            <div class="sidebar">
+                <button id="reset">Reset</button>
+                <select id="resolution">
+                    <option value="15">Large</option>
+                    <option value="25">Medium</option>
+                    <option value="63" selected="selected" >Small</option>
+                </select>
+                <div id="spacer" class="inset">
+ 
+                </div>
+            </div>
+            <div class="grid-wrapper">
+            <div class="inset" id="grid">
+            </div>
+            </div>
+        </div>
+      <div id="color-picker">
+        <div class="inset" id="selected-color">
+
+        </div>
+        <div id="colors-wrapper">
+            <div id="top">
+                <div class="color inset" id="000000"></div>
+                <div class="color inset" id="808080"></div>
+                <div class="color inset" id="800000"></div>
+                <div class="color inset" id="808000"></div>
+                <div class="color inset" id="008001"></div>
+                <div class="color inset" id="008080"></div>
+                <div class="color inset" id="010080"></div>
+                <div class="color inset" id="800080"></div>
+                <div class="color inset" id="808040"></div>
+                <div class="color inset" id="004040"></div>
+                <div class="color inset" id="0080FF"></div>
+                <div class="color inset" id="004080"></div>
+                <div class="color inset" id="4000FF"></div>
+                <div class="color inset" id="803F00"></div>
+                <div class="inset" id="rainbow"></div>
+            </div>
+            <div id="bottom">
+                <div class="color inset" id="FFFFFF"></div>
+                <div class="color inset" id="C0C0C0"></div>
+                <div class="color inset" id="FF0000"></div>
+                <div class="color inset" id="FFFF00"></div>
+                <div class="color inset" id="01FF00"></div>
+                <div class="color inset" id="01FFFF"></div>
+                <div class="color inset" id="0600FF"></div>
+                <div class="color inset" id="FF00FF"></div>
+                <div class="color inset" id="FFFF80"></div>
+                <div class="color inset" id="00FF80"></div>
+                <div class="color inset" id="80FFFF"></div>
+                <div class="color inset" id="8080FF"></div>
+                <div class="color inset" id="FF0080"></div>
+                <div class="color inset" id="FF803F"></div>
+            </div>
+        </div>
+      </div>
+      <div class="status-bar">
+        <P class="status-bar-field">Built using <a href="https://jdan.github.io/98.css/">98.css</a> </p>
+        <p class="status-bar-field">Copyright ©
             <script>
                 document.write(new Date().getFullYear())
-              </script> j0srisk
-        </p>
+              </script> j0srisk</p>
+        <a class="status-bar-field" href="https://github.com/j0srisk">Github</a>
+      </div>
     </div>
+  </div>
+</div>
 </body>
 </html>

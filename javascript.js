@@ -1,10 +1,21 @@
 let rainbowMode = false;
+let selectedColor = '#000000'
+let selectedResolution = 63;
 
-const etchasketch = document.getElementById("etchasketch");
+// pulls existing elements from html
+const grid = document.getElementById("grid");
 const resetButton = document.getElementById("reset");
+const colors = document.querySelectorAll('.color');
+const currentColorWindow = document.getElementById("selected-color");
 const rainbowButton = document.getElementById("rainbow");
-const resolutionButton = document.getElementById("resolution");
+const resolutionSelector = document.getElementById("resolution");
 
+//adds event listeners and styles elements with defaults
+colors.forEach(color => color.addEventListener('click', changeColor));
+colors.forEach(color => color.style.backgroundColor = '#'+color.id);
+currentColorWindow.style.backgroundColor = selectedColor;
+
+// creates grid
 function createGrid(resolution) {
     for (let i = 0; i < resolution * resolution; i ++){
 
@@ -12,37 +23,37 @@ function createGrid(resolution) {
         pixel.setAttribute("class", "pixel")
         pixel.setAttribute("id" , "pixel-" + i);
     
-        etchasketch.style.gridTemplateColumns = "repeat("+ resolution + ", 1fr)";
-        etchasketch.appendChild(pixel);
+        grid.style.gridTemplateColumns = "repeat("+ resolution + ", 1fr)";
+        grid.appendChild(pixel);
+
+        //styles checkboard only works on odd numbers rn
+        if (i%2 != 0){
+            pixel.style.backgroundColor = "#EDEDED";
+        }
     }
 }
 
+//removes all pixel elements from the grid
 function removeGrid() {
-    etchasketch.innerHTML=''
+    grid.innerHTML=''
 }
 
-function changeGrid(){
-    const resolution = prompt("Enter Resolution: ")
-    removeGrid();
-    createGrid(resolution);
-}
 
-function changeColor(e) {
+//fills pixels with selected color or rainbow
+function fillPixel(e) {
     const pixel = document.getElementById(e.target.id);
-    console.log(pixel);
 
     if (rainbowMode === true){
         pixel.style.backgroundColor = getRandomColor();
     } else {
-        pixel.style.backgroundColor = "#000";
+        pixel.style.backgroundColor = selectedColor;
     }
-
-    //pixel.classList.add("colored")
 }
 
-function resetBoard(e) {
-    const pixels = document.querySelectorAll('.pixel');
-    pixels.forEach(pixel => pixel.style.backgroundColor = "#FFF");
+//erases board
+function resetBoard() {
+    removeGrid();
+    createGrid(selectedResolution);
 }
 
 function getRandomColor() {
@@ -57,18 +68,32 @@ function getRandomColor() {
 function rainbowToggle() {
     if (rainbowMode === false) {
         rainbowMode = true;
-        rainbowButton.textContent = "Back to Black";
+        currentColorWindow.style.backgroundImage = "linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet)";
     } else {
         rainbowMode = false;
-        rainbowButton.textContent = "Rainbow";
+        currentColorWindow.style.backgroundImage = "none";
+        currentColorWindow.style.backgroundColor = selectedColor;
     }
-
 }
 
+//changes selected color
+function changeColor(e){
+    if (rainbowMode === true){
+        rainbowToggle();
+    }
+    selectedColor = "#"+e.target.id;
+    currentColorWindow.style.backgroundColor = selectedColor;
+}
 
-etchasketch.addEventListener('mouseover', changeColor);
+function updateResolution(){
+    selectedResolution = document.getElementById("resolution").value;
+    removeGrid();
+    createGrid(selectedResolution);
+}
+
+grid.addEventListener('mouseover', fillPixel);
 resetButton.addEventListener('click', resetBoard);
 rainbowButton.addEventListener('click', rainbowToggle);
-resolutionButton.addEventListener('click', changeGrid);
+resolutionSelector.addEventListener('change', updateResolution);
 
-createGrid(16);
+createGrid(selectedResolution);
