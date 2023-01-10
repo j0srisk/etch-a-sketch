@@ -26,8 +26,8 @@ body{
 
 #grid {
     display: grid;
-    width: 50vh;
-    height: 50vh;
+    min-width: 50vw;
+    height: 50vw;
 }
 
 .pixel {
@@ -67,7 +67,7 @@ body{
     align-items: center;
     justify-content: center;
     margin: 0px 8px;
-    height: 25vh
+    height: 33%
 }
 
 #rainbow{
