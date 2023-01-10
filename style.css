@@ -32,7 +32,6 @@ body{
 }
 
 .grid-wrapper {
-    outline: red 1px solid;
     display: flex;
     flex: 1;
 }
