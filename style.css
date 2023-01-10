@@ -13,6 +13,13 @@ body{
     padding: 2px;
 }
 
+.window {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 50px);
+    max-width: 600px;
+}
+
 .content {
     display: flex;
     gap: 8px;
@@ -24,10 +31,16 @@ body{
     gap: 8px;
 }
 
+.grid-wrapper {
+    outline: red 1px solid;
+    display: flex;
+    flex: 1;
+}
+
 #grid {
     display: grid;
-    min-width: 50vw;
-    height: 50vw;
+    width: 100%;
+    aspect-ratio : 1 / 1;
 }
 
 .pixel {
